@@ -1,0 +1,17 @@
+from flask import Flask, request, jsonify
+from src.predict import predict_attrition
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Employee Attrition Prediction System is Running"
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    data = request.get_json()
+    result = predict_attrition(data)
+    return jsonify(result)
+
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,0 +1,20 @@
+import joblib
+import pandas as pd
+
+# Load trained model (will be created later)
+try:
+    model = joblib.load("attrition_model.pkl")
+except:
+    model = None
+
+def predict_attrition(input_data):
+    if model is None:
+        return {"error": "Model not trained yet"}
+
+    df = pd.DataFrame([input_data])
+    probability = model.predict_proba(df)[0][1]
+
+    return {
+        "Attrition_Risk": round(probability, 2),
+        "Risk_Level": "High" if probability > 0.6 else "Low"
+    }
