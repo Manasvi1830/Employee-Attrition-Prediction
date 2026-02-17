@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Employee Attrition Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+      color: #fff;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    .container-box {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dashboard {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      padding: 2.5rem;
+      width: 480px;
+      text-align: center;
+    }
+
+    .dashboard h2 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      padding: 2rem;
+      width: 360px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      color: #fff;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    h4 {
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      font-size: 0.95rem;
+      padding: 10px 12px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff !important;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-control:focus {
+      border-color: #a58cfb;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: none;
+      color: #fff !important;
+    }
+
+    .btn-custom {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 10px 14px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+    }
+
+    .toggle-link {
+      color: #ffd54f;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    #toggleText {
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .container-box {
+        flex-direction: column;
+        text-align: center;
+      }
+      .dashboard, .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <div class="container-box">
+    <div class="dashboard">
+      <h2>Welcome to Attrition Insights</h2>
+      <p>Discover the patterns behind employee turnover and take proactive steps to improve retention. Our AI-powered platform analyzes workforce data to predict attrition risks and empower HR teams with actionable insights.</p>
+    </div>
+
+    <div class="card">
+      <h4 id="formTitle">Login</h4>
+      <form id="loginForm" action="dashboard.html">
+        <input type="email" class="form-control" placeholder="Email" required>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <button type="submit" class="btn-custom">Login</button>
+      </form>
+
+      <form id="signupForm" style="display:none;" action="dashboard.html">
+        <input type="text" class="form-control" placeholder="Full Name" required>
+        <input type="email" class="form-control" placeholder="Email" required>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <button type="submit" class="btn-custom">Sign Up</button>
+      </form>
+
+      <p id="toggleText">Don’t have an account? <span class="toggle-link" onclick="toggleForms()">Sign Up</span></p>
+    </div>
+  </div>
+
+  <script>
+    function toggleForms() {
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      const toggleText = document.getElementById('toggleText');
+      const formTitle = document.getElementById('formTitle');
+
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        formTitle.innerText = "Login";
+        toggleText.innerHTML = "Don’t have an account? <span class='toggle-link' onclick='toggleForms()'>Sign Up</span>";
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        formTitle.innerText = "Sign Up";
+        toggleText.innerHTML = "Already have an account? <span class='toggle-link' onclick='toggleForms()'>Login</span>";
+      }
+    }
+  </script>
+</body>
+</html>
